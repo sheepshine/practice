@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="shop">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="shopcar">
+	<h1>价格</h1>
+	<input type="num" ng-model="price" />
+	<h1>数量</h1>
+	<input type="num" ng-model="num" />
+	<h1>邮费</h1>
+	<input type="num" ng-model="postfe" />
+	<h1>总价</h1>
+	<div>{{total}}</div>
+	<b>满100包邮</b>
+	<script type="text/javascript">
+		var shop=angular.module("shop",[]);
+		shop.controller("shopcar",["$scope",function($scope){
+			$scope.price=5000;
+			$scope.num=1;
+			$scope.postfe=10;
+			$scope.total=$scope.price*$scope.num+$scope.postfe
+			
+			
+			$scope.$watch('price',function(newVal,oldVal){
+				console.log(oldVal);
+				console.log(newVal);
+				$scope.postfe=newVal>=100?0 : 10;
+				$scope.total=$scope.price*$scope.num+$scope.postfe;
+			})
+		}])
+	</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "angualr_pracitce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sheepshine",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.4.8"
+  }
+}
