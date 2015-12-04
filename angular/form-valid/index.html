@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<style type="text/css">
+		.active{color: red}
+		input.ng-valid{border:1px solid blue}
+		input.ng-invalid{border:1px solid red}
+	</style>
+</head>
+<body ng-controller="haha">
+	<form name='test'>
+		<input type="text" name='text' required ng-minlength="{{length}}" ng-model="inputtext" />
+		<div>最小字符长度{{length}}</div>
+		<div>{{test.text.$error}}</div>
+	</form>
+	<form name="myForm">
+		<input type="text" name="username" required ng-minlength='3' ng-model="username" ng-keyup="chageFn(myForm.username.$error,formData)" />
+		<span>{{formData.nameval}}</span><br>
+		<input type="password" name="password" required ng-minlength='6' ng-model="password" ng-keyup="chageFn(myForm.password.$error,formDataPass)" />
+		<span>{{formDataPass.nameval}}</span>
+	</form>
+	<script>
+		var myApp=angular.module('myApp',[]);
+		myApp.controller('haha', ['$scope', function($scope){
+			$scope.length=5;
+			$scope.formData={
+				nameval:'请输入用户名',
+				valArr:{
+					required: "输入用户名啊啊啊",
+					minlength:"名字长度必须大于3",
+					success:"√"
+				}
+			}
+			$scope.formDataPass={
+				nameval:'请输入密码啊啊',
+				valArr:{
+					required: "请输入密码",
+					minlength:"密码长度必须大于6",
+					success:"√"
+				}
+			}
+		$scope.chageFn=function(err,arr){
+				for(var attr in err){
+						if(err[attr]==true){
+							arr.nameval=arr.valArr[attr];
+							return;
+						}
+					}
+					arr.nameval=arr.valArr.success;
+				}
+		}])
+		
+		
+	</script>
+</body>
+</html>

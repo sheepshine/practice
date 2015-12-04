@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<style type="text/css">
+		.active{color: red}
+	</style>
+</head>
+<body ng-controller="haha">
+	<input type="text" ng-model="text" ng-model-options="{updateOn:'blur'}"/>
+	<div>{{text}}</div>
+	<div ng-controller="haha2 as a1">{{a1.text}}<div>{{a1.name()}}</div></div>
+	<script>
+		var myApp=angular.module('myApp',[]);
+		myApp.controller('haha', ['$scope', function($scope){
+			$scope.listdate=[
+				['a','b','c'],
+				['d','e','f'],
+				['g','h','i']
+			]
+		}])
+		myApp.controller('haha2', ['$scope',Fnaa ])
+		function Fnaa($scope){
+
+		}
+		Fnaa.prototype.name=function(){
+			return "hello"
+		}
+		Fnaa.prototype.text="hahahahahah"
+	</script>
+</body>
+</html>
