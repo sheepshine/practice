@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+	<button onclick='linecolor="yellow"'>黄色</button>
+	<button onclick='linecolor="red"'>红色</button>
+	<button onclick='linecolor="white"'>白色</button>
+	<script type="text/javascript">
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		ctx.save();
+		ctx.fillStyle="black";
+		ctx.fillRect(0,0,600,300);
+
+		var onoff=false;
+		var oldx=-10;
+		var oldy=-10;
+
+		var linecolor="white";
+		var linw=4;
+
+		c.addEventListener("mousemove",draw,true);
+		c.addEventListener("mousedown",down,false);
+		c.addEventListener("mouseup",up,false);
+		function down(ev){
+			var ev=ev||event;
+			onoff=true;
+			oldx=ev.pageX-10;
+			oldy=ev.pageY-10;
+		}
+		function up(){
+			onoff=false;
+		}
+		function draw(ev){
+			var ev=ev||event;
+			if(onoff==true){
+				var newx=ev.pageX-10;
+				var newy=ev.pageY-10;
+				ctx.beginPath();
+				ctx.moveTo(oldx,oldy);
+				ctx.lineTo(newx,newy);
+				ctx.strokeStyle=linecolor;
+				ctx.lineWidth=linw;
+				ctx.lineCap="round";
+				ctx.stroke();
+				oldx=newx;
+				oldy=newy;
+			}
+		}
+
+	</script>
+</body>
+</html>
