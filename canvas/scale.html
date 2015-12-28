@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="500" height="350">
+		浏览器不支持canvas
+	</canvas>
+	<script type="text/javascript">
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		ctx.save();
+		ctx.beginPath();
+		ctx.strokeStyle="#000";
+		ctx.strokeRect(10,10,150,100);
+
+		ctx.scale(2,2);
+		ctx.beginPath();
+		ctx.strokeStyle="#ccc";
+		ctx.strokeRect(10,10,150,100);
+
+		ctx.scale(0.5,0.5);
+		ctx.beginPath();
+		ctx.strokeStyle="red";
+		ctx.strokeRect(10,10,150,100);
+
+		ctx.translate(50,100);
+		ctx.beginPath();
+		ctx.strokeStyle="yellow";
+		ctx.strokeRect(10,10,150,100);
+
+		ctx.scale(1,1);
+		ctx.translate(80,55)
+		ctx.rotate(45*Math.PI/180);
+		ctx.beginPath();
+		ctx.strokeStyle="#2b0b0b";
+		ctx.strokeRect(10,10,150,100);
+
+		ctx.transform(1,0,0,1,-10,-100);
+		ctx.beginPath();
+		ctx.strokeStyle="blue";
+		ctx.strokeRect(10,10,150,100);
+		
+		ctx.restore();
+		ctx.beginPath();
+		var img=new Image();
+		img.src="9767714.jpg";
+		img.onload=function(){
+			//ctx.strokeRect(0,0,100,100);
+			ctx.moveTo(0,0);
+			ctx.lineTo(100,0);
+			ctx.lineTo(100,123);
+			ctx.closePath();
+			ctx.clip();
+			ctx.drawImage(img,0,0)
+		}
+	</script>
+</body>
+</html>
