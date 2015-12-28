@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('watch', function() {
-    gulp.watch("src/canvas" + '**/*.*',['reload-dev']);
+    gulp.watch("src/canvas/lufylegend/" + '**/*.*',['reload-dev']);
 });
 
 gulp.task('connectDev', function() {
@@ -24,7 +24,7 @@ gulp.task('connectDev', function() {
 
 //reload server
 gulp.task('reload-dev',function() {
-  gulp.src("src/canvas"+ '**/*.*')
+  gulp.src("src/canvas/lufylegend"+ '**/*.*')
     .pipe(connect.reload());
 });
 //测试服务器
