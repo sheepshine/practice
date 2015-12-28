@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1500" height="1500"></canvas>
+	<script type="text/javascript">
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		//颜色渐变
+		var grd=ctx.createLinearGradient(0,0,200,0);
+		grd.addColorStop(0.2,"red");
+		grd.addColorStop(0.8,"blue");
+		ctx.fillStyle=grd;
+		ctx.fillRect(0,0,200,100)
+		
+		//径向渐变createRadialGradient
+		var grd=ctx.createRadialGradient(300,150,10,300,150,50);
+		grd.addColorStop(0.2,"yellow");
+		grd.addColorStop(0.8,"#fff");
+		ctx.fillStyle=grd;
+		ctx.fillRect(200,100,200,100);
+
+		//颜色合成globalCompositeOperation
+		ctx.fillStyle="#00ff00";
+		ctx.fillRect(10,10,50,50);
+		ctx.globalCompositeOperation="lighter";
+		ctx.beginPath();
+		ctx.fillStyle="#ff0000";
+		ctx.arc(50,50,30,0,2*Math.PI);
+		ctx.fill();
+
+		//颜色取反
+		var image=new Image();
+		image.src="9767714.jpg";
+		image.onload=function(){
+			ctx.drawImage(image,0,100);
+			var imageData=ctx.getImageData(0,0,600,600);
+			console.log(imageData)
+			var pixels=imageData.data;
+		}
+		// ctx.putImageData(imagedata,250,0)
+	</script>
+</body>
+</html>
