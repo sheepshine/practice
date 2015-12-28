@@ -24,7 +24,7 @@ gulp.task('connectDev', function() {
 
 //reload server
 gulp.task('reload-dev',function() {
-  gulp.src(path.src + '**/*.*')
+  gulp.src("src/canvas"+ '**/*.*')
     .pipe(connect.reload());
 });
 //测试服务器

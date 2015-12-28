@@ -8,6 +8,7 @@
 	<script type="text/javascript">
 		var c=document.getElementById("myCanvas");
 		var ctx=c.getContext("2d");
+		ctx.save();
 		//颜色渐变
 		var grd=ctx.createLinearGradient(0,0,200,0);
 		grd.addColorStop(0.2,"red");
@@ -37,10 +38,24 @@
 		image.onload=function(){
 			ctx.drawImage(image,0,100);
 			var imageData=ctx.getImageData(0,0,600,600);
-			console.log(imageData)
 			var pixels=imageData.data;
+			for(var i=0;i<pixels.lenght;i+=4){
+				pixels[i]=255-pixels[i];
+				pixels[i+1]=255-pixels[i+1];
+				pixels[i+2]=255-pixels[i+2];
+			}
+			ctx.putImageData(imageData,0,300)
 		}
-		// ctx.putImageData(imagedata,250,0)
+		
+
+		//阴影效果
+		ctx.beginPath();
+		ctx.shadowColor="#FF0000";
+		ctx.shadowBlur=100;
+		ctx.shadowoffsetX=100;
+		ctx.shadowoffsetY=100;
+		ctx.fillRect(0,300,100,100)
+		ctx.restore();
 	</script>
 </body>
 </html>
