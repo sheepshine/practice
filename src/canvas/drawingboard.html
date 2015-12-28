@@ -8,7 +8,10 @@
 	<button onclick='linecolor="yellow"'>黄色</button>
 	<button onclick='linecolor="red"'>红色</button>
 	<button onclick='linecolor="white"'>白色</button>
+	<button onclick='copyimg()'>保存</button>
+	<img id="imgsrc" width="600" height="300">
 	<script type="text/javascript">
+		var imgsrc=document.getElementById("imgsrc");
 		var c=document.getElementById("myCanvas");
 		var ctx=c.getContext("2d");
 		ctx.save();
@@ -49,6 +52,11 @@
 				oldx=newx;
 				oldy=newy;
 			}
+		}
+		function copyimg(){
+			var img_png_src=c.toDataURL("image/png");
+			imgsrc.src=img_png_src;
+			console.log(img_png_src);
 		}
 
 	</script>
