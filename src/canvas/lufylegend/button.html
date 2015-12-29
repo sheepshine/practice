@@ -5,13 +5,14 @@
 	<script type="text/javascript" src="../lib/lufylegend-1.10.0.min.js"></script>
 </head>
 <body>
-	<canvas id="myCanvas" width="1000" height="1000"></canvas>
+	<div id="mylegend" width="1000" height="1000"></div>
 	<script type="text/javascript">
-		init(50,"myCanvas",800,600,main);
+		init(50,"mylegend",800,600,main);
+		var field;
 		function main(){
 			loader=new LLoader();
 			loader.addEventListener(LEvent.COMPLETE,loadUp);
-			loader.load("image/up.png","bitmapData");
+			loader.load("image/up.png","bitmapData");  
 		}
 		function loadUp(event){
 			bitmapup=new LBitmap(new LBitmapData(loader.content));
@@ -23,7 +24,7 @@
 			bitmapover=new LBitmap(new LBitmapData(loader.content));
 			var layer=new LSprite();
 			addChild(layer);
-			var field=new LTextField();
+			field=new LTextField();
 			field.text="wait click";
 			layer.addChild(field);
 			var testButton=new LButton(bitmapup,bitmapover);

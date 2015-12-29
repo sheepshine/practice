@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../lib/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading</div>
+	<script type="text/javascript">
+		var loader,anime,layer;
+		init(200,"mylegend",500,350,main);
+		function main(){
+			loader=new LLoader();
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapdata)
+			loader.load("../lufylegend/image/chara.png","bitmapData");
+		}
+		function loadBitmapdata(event){
+			var bitmapdata=new LBitmapData(loader.content,0,0,64,64);
+			var list=LGlobal.divideCoordinate(256,256,4,4);
+			layer=new LSprite();
+			addChild(layer);
+			anime=new LAnimation(layer,bitmapdata,list);
+			layer.addEventListener(LEvent.ENTER_FRAME,onframe)
+		}
+		function onframe(){
+			var action=anime.getAction();
+			switch(action[0]){
+				case 0:
+					layer.y+=5;
+					if(layer.y>=200){
+						anime.setAction(2);
+					}
+					break;
+				case 1:
+					layer.x-=5;
+					if(layer.x<=0){
+						anime.setAction(0);
+					}
+					break;
+				case 2:
+					layer.x+=5;
+					if(layer.x>=200){
+						anime.setAction(3);
+					}
+					break;
+				case 3:
+					layer.y-=5;
+					if(layer.y<=0){
+						anime.setAction(1);
+					}
+					break;
+			}
+			anime.onframe();
+		}
+	</script>
+</body>
+</html>
