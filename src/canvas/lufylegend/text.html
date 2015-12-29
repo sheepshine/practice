@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../lib/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading……</div>
+	<script>
+		init(50,"mylegend",800,600,main);
+		function main(){
+			var field=new LTextField();
+			var layer=new LSprite();
+			addChild(layer);
+			field.text="1";
+			field.x=50;
+			field.y=50;
+			field.size=30;
+			field.color="red";
+			field.weight="600";
+			//field.setType(LTextFieldType.INPUT)
+			layer.addEventListener(LMouseEvent.MOUSE_DOWN,downshow);
+			layer.addEventListener(LMouseEvent.MOUSE_UP,upshow);
+			layer.addEventListener(LEvent.ENTER_FRAME,onframe)
+			layer.addChild(field);
+			function downshow(){
+				field.text='Mouse Down'
+			}
+			function upshow(){
+				field.text='Mouse Up'
+			}
+			function onframe(){
+				field.text=parseInt(field.text)+1;
+			}
+
+		}
+	</script>
+</body>
+</html>
