@@ -21,7 +21,8 @@
 			//field.setType(LTextFieldType.INPUT)
 			layer.addEventListener(LMouseEvent.MOUSE_DOWN,downshow);
 			layer.addEventListener(LMouseEvent.MOUSE_UP,upshow);
-			layer.addEventListener(LEvent.ENTER_FRAME,onframe)
+			layer.addEventListener(LEvent.ENTER_FRAME,onframe);
+			LEvent.addEventListener(LGlobal.window,LKeyboardEvent.KEY_DOWN,keydown);
 			layer.addChild(field);
 			function downshow(){
 				field.text='Mouse Down'
@@ -31,6 +32,9 @@
 			}
 			function onframe(){
 				field.text=parseInt(field.text)+1;
+			}
+			function keydown(){
+				field.text=parseInt(field.text)*1000;
 			}
 
 		}
