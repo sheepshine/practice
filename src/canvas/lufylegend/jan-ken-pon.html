@@ -173,9 +173,26 @@
 			}else if(display.name=="bu"){
 				selfValue=2;
 			}
+			var checkList=[
+				[0,1,-1],
+				[-1,0,1],
+				[1,-1,0]
+			]
 			enemyValue=Math.floor(Math.random()*3);
 			selfBitmap.bitmapData=showList[selfValue];
 			enemyBitmap.bitmapData=showList[enemyValue];
+			var result=checkList[selfValue][enemyValue];
+			if(result==-1){
+				loss+=1;
+			}else if(result==1){
+				win+=1;
+			}else{
+				draw+=1;
+			}
+			selfTextWin.text="胜利次数:"+win;
+			selfTextLoss.text="失败次数:"+loss;
+			selfTextDraw.text="平局次数:"+draw;
+			selfTextAll.text="猜拳次数"+(win+loss+draw);
 		}
 
 	</script>
