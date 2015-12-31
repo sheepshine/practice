@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=0" />
+	<script type="text/javascript" src="../lib/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend"></div>
+	<script>
+		init(50,"mylegend",320,480,main);
+		var loadingLayer,backLayer,graphicsMap,nextLayer;
+		var imglist={};
+		var imgData=new Array(
+				{name:"backImage",path:"./image/backImage.png"},
+				{name:"r1",path:"./image/r1.png"},
+				{name:"r2",path:"./image/r2.png"},
+				{name:"r3",path:"./image/r3.png"},
+				{name:"r4",path:"./image/r4.png"}
+			)
+		function main(){
+			backLayer=new LSprite();
+			backLayer.graphics.drawRect(1,"#000",[0,0,320,480],true,"#000");
+			addChild(backLayer);
+			loadingLayer=new LoadingSample1();
+			backLayer.addChild(loadingLayer);
+			LLoadManage.load(
+					imgData,
+					function(progress){
+						loadingLayer.setProgress(progress);
+					},
+					gameInit
+				)
+		}
+		function gameInit(result){
+			imglist=result;
+			backLayer.removeChild(loadingLayer);
+			loadingLayer=null;
+			var title=new LTextField();
+			title.x=50;
+			title.y=100;
+			title.size=30;
+			title.color="#fff";
+			title.text="俄罗斯方块";
+			backLayer.addChild(title);
+			backLayer.graphics.drawRect(1,"#fff",[50,240,220,40]);
+			var txtClick=new LTextField();
+			txtClick.size=18;
+			txtClick.color="#fff";
+			txtClick.text="点击页面开始游戏";
+			txtClick.x=(LGlobal.width-txtClick.getWidth())/2;
+			txtClick.y=245;
+			backLayer.addChild(txtClick);
+			backLayer.addEventListener(LMouseEvent.MOUSE_UP,gameToStart);
+		}
+		function gameToStart(){
+			backLayer.die();
+			backLayer.removeAllChild();
+			var bitmap=new LBitmap(new LBitmapData(imglist["backImage"]));
+			backLayer.addChild(bitmap);
+		}
+	</script>
+</body>
+</html>
