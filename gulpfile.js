@@ -17,7 +17,7 @@ gulp.task('watch', function() {
 gulp.task('connectDev', function() {
   connect.server({
     root: "src/canvas",
-    port: 8000,
+    port: 8010,
     livereload: true
   });
 });
