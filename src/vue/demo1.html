@@ -7,12 +7,13 @@
 </head>
 <body>
 	<div id="example">
-		<input v-model='message'>
+		<input v-model='message' v-if='greeting'>
 		{{message}}
 		<ul>
 			<li v-for='listd in listdata'>{{listd.name}}</li>
 		</ul>
 		<button v-on:click='hehe'>呵呵</button>
+		<button v-on:click='hide'>{{buttoname}}</button>
 	</div>
 	<example></example>
 	<script type="text/javascript">
@@ -24,7 +25,9 @@
 				{name:'test3'},
 				{name:'test4'},
 				{name:'test5'}
-			]
+			],
+			greeting:true,
+			buttoname:'锁定'
 		}
 		new Vue({
 			el:"#example",
@@ -32,6 +35,14 @@
 			methods:{
 				hehe:function(){
 					this.message='heheda'
+				},
+				hide:function(){
+					this.greeting=!this.greeting;
+					if(this.greeting){
+						this.buttoname='锁定'
+					}else{
+						this.buttoname='解锁'
+					}
 				}
 			}
 		})
