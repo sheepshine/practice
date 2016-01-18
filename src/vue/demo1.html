@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="lib/vue.js"></script>
+</head>
+<body>
+	<div id="example">
+		<input v-model='message'>
+		{{message}}
+		<ul>
+			<li v-for='listd in listdata'>{{listd.name}}</li>
+		</ul>
+		<button v-on:click='hehe'>呵呵</button>
+	</div>
+	<example></example>
+	<script type="text/javascript">
+		var object={
+			message:'Hellp World!',
+			listdata:[
+				{name:'test1'},
+				{name:'test2'},
+				{name:'test3'},
+				{name:'test4'},
+				{name:'test5'}
+			]
+		}
+		new Vue({
+			el:"#example",
+			data:object,
+			methods:{
+				hehe:function(){
+					this.message='heheda'
+				}
+			}
+		})
+		var example=new Vue({
+			data:{
+				a:1
+			},
+			computed:{
+				b:function(){
+					return this.a+1
+				}
+			}
+		})
+		console.log(example.a)
+		console.log(example.b)
+		example.a++
+		console.log(example.b)
+
+		var Example=Vue.extend({
+			template:'<div>{{message}}</div>',
+			data:function(){
+				return{
+					message:'Hello Vue.js!'
+				}
+			}
+		})
+		Vue.component('example',Example)
+	</script>
+</body>
+</html>
