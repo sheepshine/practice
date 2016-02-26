@@ -56,28 +56,72 @@
 			}
 		}
 		
+		// console.log(map(splitParagraph,paragraphs))
+
+		// function splitParagraph(text){
+		// 	function split(pos){
+		// 		if(pos==text.length){
+		// 			return [];
+		// 		}
+		// 		else if(text.charAt(pos)=='*'){
+		// 			var end=findClosing('*',pos+1),
+		// 				frag={type:'强调',content:text.slice(pos+1,end)};
+		// 			return [frag].concat(split(end+1))
+		// 		}
+		// 		else if(text.charAt(pos)=='{'){
+		// 			var end=findClosing('}',pos+1),
+		// 				frag={type:'注释',content:text.slice(pos+1,end)};
+		// 			return [frag].concat(split(end+1))
+		// 		}
+		// 		else{
+		// 			var end=findOpeningOrEnd(pos),
+		// 				frag={type:'normal',content:text.slice(pos,end)};
+		// 			return [frag].concat(split(end))
+		// 		}
+		// 	}
+
+		// 	function findClosing(character,from){
+		// 		var end=text.indexOf(character,from);
+		// 		if(end==-1) 
+		// 			throw new Error('Missing closing"'+character+'"')
+		// 		else 
+		// 			return end;
+		// 	}
+
+		// 	function findOpeningOrEnd(from){
+		// 		function indexOrEnd(character){
+		// 			var index=text.indexOf(character,from);
+		// 			return index==-1?text.length:index;
+		// 		}
+		// 		return Math.min(indexOrEnd('*'),indexOrEnd('{'))
+		// 	}
+
+		// 	return split(0);
+		// }
+
 		console.log(map(splitParagraph,paragraphs))
-		
+
 		function splitParagraph(text){
-			function split(pos){
-				if(pos==text.length){
-					return [];
+			function split(){
+				var pos=0,fragments=[];
+				while(pos<text.length){
+					if(text.charAt(pos)=='*'){
+						var end=findClosing('*',pos+1);
+						fragments.push({type:'强调',content:text.slice(pos+1,end)});
+						pos=end+1
+					}
+					else if(text.charAt(pos)=='{'){
+						var end=findClosing('}',pos+1);
+						fragments.push({type:'注释',content:text.slice(pos+1,end)});
+						pos=end+1
+					}
+					else {
+						var end=findOpeningOrEnd(pos);
+						fragments.push({type:'normal',content:text.slice(pos,end)});
+						pos=end;
+					}
 				}
-				else if(text.charAt(pos)=='*'){
-					var end=findClosing('*',pos+1),
-						frag={type:'强调',content:text.slice(pos+1,end)};
-					return [frag].concat(split(end+1))
-				}
-				else if(text.charAt(pos)=='{'){
-					var end=findClosing('}',pos+1),
-						frag={type:'注释',content:text.slice(pos+1,end)};
-					return [frag].concat(split(end+1))
-				}
-				else{
-					var end=findOpeningOrEnd(pos),
-						frag={type:'normal',content:text.slice(pos,end)};
-					return [frag].concat(split(end))
-				}
+				return fragments;
 			}
 
 			function findClosing(character,from){
