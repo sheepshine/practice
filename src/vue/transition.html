@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="lib/vue.js"></script>
+	<style type="text/css">
+		.expand-transition{
+			transition: all 0.3s ease;
+			height: 300px;
+			padding: 30px;
+			background-color: #eee;
+			overflow: hidden;
+		}
+		.expand-enter,.expand-leave{
+			height: 0;
+			padding: 0 10px;
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="test">
+		<button v-on:click="haha">切换</button>
+		<div v-if="show" transition='expand'>hello</div>
+	</div>
+	<script type="text/javascript">
+		var vw=new Vue({
+			el:"#test",
+			data:{
+				show:true
+			},
+			methods:{
+				haha:function(){
+					this.show=!this.show
+				}
+			}
+		})
+
+		Vue.transition('expand',{
+			beforeEnter:function(el){
+				console.log("载入动画之前")
+				el.textContent="beforeEnter"
+			},
+			enter:function(el){
+				console.log("正在载入动画")
+				el.textContent="enter"
+			},
+			afterEnter:function(el){
+				console.log("载入动画之后")
+				el.textContent="afterEnter"
+			},
+			enterCancelled:function(el){
+
+			},
+			beforeLeave: function (el) {
+			    el.textContent = 'beforeLeave'
+			},
+			leave: function (el) {
+			    el.textContent = 'leave'
+			},
+			afterLeave: function (el) {
+			    el.textContent = 'afterLeave'
+			},
+			leaveCancelled: function (el) {
+			    // handle cancellation
+			}
+		})
+	
+	</script>
+</body>
+</html>
