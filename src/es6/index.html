@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		class Animal{
+			constructor(name){
+				this.name=name
+			}
+
+			sayName(){
+				console.log('My name is '+this.name)
+			}
+		}
+
+		class Programmer extends Animal{
+			constructor(name){
+				super(name)
+			}
+			program(){
+				console.log('I\'m coding')
+			}
+		}
+
+		var animal=new Animal("heheda"),
+		papa=new Programmer("papa")
+		animal.sayName()
+		papa.program()
+		papa.sayName()
+	</script>
+</body>
+</html>
