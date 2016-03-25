@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="shopcar">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body>
+	<div  ng-controller="shopcarCtr">{{num}}
+		<div  ng-controller="shopcarCtr" ng-click="$emit('add')">{{num}}
+			<div  ng-controller="shopcarCtr">{{num}}
+		
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var shopcar=angular.module('shopcar',[])
+		shopcar.controller('shopcarCtr',function($scope){
+			$scope.num=0
+			// $scope.add=function(){
+			// 	$scope.num++
+			// }
+			$scope.$on('add',function(){
+			 	$scope.num++
+			 })
+		})
+	</script>
+</body>
+</html>
