@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="react.js"></script>
+	<script type="text/javascript" src="JSXTransformer.js"></script>
+</head>
+<body>
+	<script type="text/jsx">
+		var TodoList=React.createClass({
+			//初始化数据，由state控制
+			getInitialState:function(){
+				return{
+					todolist:['aa','bb']
+				}
+			},
+			render:function(){
+				return (
+					<div>
+						<TypeNew />
+						<ListTodo todo={this.state.todolist} />
+					</div>
+				)
+			}
+		})
+
+		var TypeNew=React.createClass({
+			render:function(){
+				return(
+					<form>
+						<input type="text" placeholder="接下来要做啥" />
+					</form>
+				)
+			}
+		})
+
+		var ListTodo=React.createClass({
+			render:function(){
+				return(
+					<ul id="todo-list">
+						{this.props.todo.map(function(item,i){
+							return(
+								<li>
+									<label>{item}</label>
+									<button>delect</button>
+								</li>
+							)
+						})}
+					</ul>
+				)
+			}
+		})
+		React.render(<TodoList />,document.body)
+	</script>
+</body>
+</html>
