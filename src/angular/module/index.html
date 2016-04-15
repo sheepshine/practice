@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div  ng-controller="haha">
+		<div></div>
+	</div>
+	<script type="text/javascript">
+		/**
+			服务的跨模块可见性
+			子模块的服务可以注入父模块的服务
+		*/
+
+		// var app=angular.module('app',['engines']);
+		// app.controller('haha',function(car){
+		// 	car.start()
+		// })
+
+		// app.factory('car', ['$log','dieselEngine', function($log,dieselEngine){
+		
+		// 	return {
+		// 		start:function(){
+		// 			$log.info('Staring'+dieselEngine.type)
+		// 		}
+		// 	};
+		// }])
+
+		// var engines=angular.module('engines',[])
+		// engines.factory('dieselEngine', [function(){
+		// 	return {
+		// 		type:'diesel'
+		// 	};
+		// }])
+
+		/**
+			服务的跨模块可见性
+			兄弟模块的服务也相互可见
+		*/
+
+		// var app=angular.module('app',['engines','cars']);
+		// app.controller('haha',function(car){
+		// 	car.start()
+		// })
+
+		// var cars=angular.module('cars',[])
+		// cars.factory('car', ['$log','dieselEngine', function($log,dieselEngine){
+		
+		// 	return {
+		// 		start:function(){
+		// 			$log.info('Staring'+dieselEngine.type)
+		// 		}
+		// 	};
+		// }])
+
+		// var engines=angular.module('engines',[])
+		// engines.factory('dieselEngine', [function(){
+		// 	return {
+		// 		type:'diesel'
+		// 	};
+		// }])
+
+		/*
+			父模块的服务会覆盖子模块的同名服务
+		*/
+		var app=angular.module('app',['engines','cars']);
+		app.controller('haha',function(car){
+			car.start()
+		})
+
+		var cars=angular.module('cars',[])
+		cars.factory('dieselEngine', [function(){
+			return {
+				type:'custom diesel'
+			};
+		}])
+		cars.factory('car', ['$log','dieselEngine', function($log,dieselEngine){
+		
+			return {
+				start:function(){
+					$log.info('Staring '+dieselEngine.type)
+				}
+			};
+		}])
+
+		var engines=angular.module('engines',[])
+		engines.factory('dieselEngine', [function(){
+			return {
+				type:'diesel'
+			};
+		}])
+	</script>
+</body>
+</html>

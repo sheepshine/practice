@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body ng-controller="haha">
+	{{hhe}}{{_arist}}{{_arist2}}
+	<script type="text/javascript">
+		var myApp=angular.module("myApp",[]);
+
+		myApp.controller("haha",function($scope,myFactory,myService){
+			$scope.hhe="歌手:"
+			$scope._arist=myFactory.getArtist()
+			$scope._arist2=myService.getArtist()
+		})
+
+		myApp.factory('myFactory',function(){
+			var _arist='刘德华';
+			var service={};
+
+			service.getArtist=function(){
+				return _arist
+			}
+
+			return service;
+		})
+
+		myApp.service('myService',function(){
+			var _arist='杨幂'
+			this.getArtist=function(){
+				return _arist
+			}
+		})
+	</script>
+</body>
+</html>
