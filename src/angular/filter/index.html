@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="shop">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="shopcar">
+	{{12 | currency:undefined:0}}
+	<ul>
+		<li ng-repeat="listdata in arrList">
+			{{listdata.name}}
+			{{listdata.age}}
+		</li>
+	</ul>
+	<ul>
+		<li ng-repeat="listdata in strData">
+			{{listdata | Myfilter:true}}
+		</li>
+	</ul>
+	<script type="text/javascript">
+		var shop=angular.module("shop",[]).controller("shopcar",["$scope","myData","filterData",function($scope,myData,filterData){
+				$scope.arrList=	myData.myArr;
+				$scope.strData=filterData.data1;		
+		}])
+
+		shop.filter('Myfilter',function(){
+			return function(input,uppercase){
+				console.log(input.lenght)
+				var out= '';
+				for(var i=0;i<input.length;i++){
+					out=input.charAt(i)+out;
+				}
+				if(uppercase){
+					out=out.toUpperCase();
+				}
+				return out;
+			}
+			
+		})
+
+		shop.factory('myData',function(){
+
+			return {
+				myArr:[
+					{name:"Tom",age:"20"},
+					{name:"hehe",age:"22"},
+					{name:"haha",age:"26"},
+					{name:"papa",age:"30"},
+					{name:"gogo",age:"32"},
+
+				]	
+			};
+		})
+
+		shop.factory('filterData',function(){
+
+			return {
+				data1:["abc","cba"]
+			};
+		})
+	</script>
+</body>
+</html>

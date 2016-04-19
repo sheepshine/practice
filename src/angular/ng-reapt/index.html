@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
+	<meta charset="utf-8">
 	<title></title>
 	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
 	<style type="text/css">
@@ -9,8 +10,8 @@
 </head>
 <body>
 	<ul ng-controller="haha">
-		<li ng-repeat-start="data in listdate" class="{{$even?'active':''}}">{{data}}</li>
-		<div>aaaaaaaaa</div>
+		<li ng-controller="hehe"  ng-repeat="(name,value) in listdate" class="{{$even?'active':''}}" ng-click="toggle()" ng-switch on="isSelected()">{{name}}:{{value}}<b ng-switch-when="true">哈哈</b></li>
+		<div >aaaaaaaaa</div>
 		<dir ng-repeat-end></dir>
 	</ul>
 	<script>
@@ -21,8 +22,22 @@
 				b:222,
 				c:333
 			}
+
+			
+			$scope.list2={}
 		}])
 		
+		myApp.controller('hehe', ['$scope', function($scope){
+			
+			$scope.isSelected=function(value){
+				
+				return $scope.selected
+			}
+
+			$scope.toggle=function(){
+				$scope.selected=!$scope.selected
+			}
+		}])
 	</script>
 </body>
 </html>
