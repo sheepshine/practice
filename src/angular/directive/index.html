@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="shop">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	.expander {
+	    border: 1px solid black;
+	    width: 250px;
+	}
+
+	.expander>.title {
+	    background-color: black;
+	    color: white;
+	    padding: .1em .3em;
+	    cursor: pointer;
+	}
+
+	.expander>.body {
+	    padding: .1em .3em;
+	}
+	</style>
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="shopcar">
+	<Button type="submit">呵呵哒</Button>
+	<hello>
+		<span>原始的内容</span>
+		<span>还会在这里</span>
+	</hello>
+	<expander class="expander" expander-title="title">
+		{{text}}
+	</expander>
+	<script type="text/javascript">
+		angular.module("shop",[]).controller("shopcar",["$scope",function($scope){
+				$scope.title='点击展开';
+				$scope.text='这里是内容的内部。'
+		}]).directive('button',function(){
+			return {
+				restrict:'E',
+				compile:function(element,attributes){
+					element.addClass('btn');
+					if(attributes.type=='submit'){
+						element.addClass('btn-primary')
+					}
+					if(attributes.size){
+						element.addClass('btn-'+attributes.size)
+					}
+				}
+			}
+		}).directive('hello',function(){
+			return {
+				restrict:'E',
+				template:'<div>你好<span ng-transclude></span>你好</div>',
+				transclude:true
+			}
+		}).directive('expander',function(){
+			return {
+				restrict:'E',
+				replace:true,
+				transclude:true,
+				scope:{
+					title:'=expanderTitle'
+				},
+				template:'<div>'+'<div class="title" ng-click="toggle()">{{title}}</div>'
+				+'<div class="body" ng-show="showMe" ng-transclude></div>'
+				+'</div>',
+				link:function(scope,element,attrs){
+					scope.showMe=false;
+					scope.toggle=function toggle(){
+						scope.showMe=!scope.showMe
+					}
+				}
+			}
+		})
+
+		
+
+		
+	</script>
+</body>
+</html>

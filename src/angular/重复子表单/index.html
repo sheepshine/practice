@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="shop">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="shopcar">
+	<form>
+		<h1>用户信息</h1>
+		<label>网站</label>
+		<div ng-repeat="website in user.websites" ng-form="websiteForm">
+			<input type="url" name="website" ng-model="website.url" />
+			<button ng-click="remove($index)">X</button>
+			<span ng-show="showError(websiteForm.website,'url')">
+				Please must enter a valid url
+			</span>
+			<span ng-show="showError(websiteForm.website,'required')">
+				This field is required
+			</span>
+		</div>
+		<button ng-click="add()">添加网站</button>
+	</form>
+	<script type="text/javascript">
+		var shop=angular.module("shop",[]).controller("shopcar",["$scope","userWebsite",function($scope,userWebsite){
+				$scope.user={
+					websites:userWebsite.websites
+				}
+				$scope.remove=function(index){
+					$scope.user.websites.splice(index,1);
+				}
+				$scope.add=function(){
+					$scope.user.websites.push({url:''});
+				}
+				$scope.showError=function(ngModelController,error){
+					return ngModelController.$error[error]
+				}	
+		}])
+
+		shop.filter('Myfilter',function(){
+			return function(input,uppercase){
+				console.log(input.lenght)
+				var out= '';
+				for(var i=0;i<input.length;i++){
+					out=input.charAt(i)+out;
+				}
+				if(uppercase){
+					out=out.toUpperCase();
+				}
+				return out;
+			}
+			
+		})
+
+		shop.factory('userWebsite',function(){
+
+			return {
+				websites:[
+					{url:'http://www.baidu.com'},
+					{url:'http://www.google.com'},
+					{url:'http://www.yahoo.com'},
+					{url:'http://www.sina.com'},
+					{url:'http://www.taobao.com'}
+				]	
+			};
+		})
+
+		
+	</script>
+</body>
+</html>

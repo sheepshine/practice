@@ -4,6 +4,14 @@
 	<title></title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<style type="text/css">
+		.ng-pristine{
+			border: 1px solid #000
+		}
+		.ng-dirty{
+			border: 2px solid #000
+		}
+	</style>
 </head>
 <body ng-controller="shopcar">
 	{{12 | currency:undefined:0}}
@@ -18,10 +26,12 @@
 			{{listdata | Myfilter:true}}
 		</li>
 	</ul>
+	<input type="text" ng-model="test">
 	<script type="text/javascript">
 		var shop=angular.module("shop",[]).controller("shopcar",["$scope","myData","filterData",function($scope,myData,filterData){
 				$scope.arrList=	myData.myArr;
-				$scope.strData=filterData.data1;		
+				$scope.strData=filterData.data1;
+				$scope.test="蛤蛤"		
 		}])
 
 		shop.filter('Myfilter',function(){
