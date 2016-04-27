@@ -24,7 +24,9 @@
 	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
 </head>
 <body ng-controller="shopcar">
-	<Button type="submit">呵呵哒</Button>
+	<button type="submit" hehe-data="text2">呵呵哒</button>
+	<button hehe-data="text3">呵呵哒</button>
+	<button type="success" hehe-data="text2"></button>
 	<hello>
 		<span>原始的内容</span>
 		<span>还会在这里</span>
@@ -35,14 +37,22 @@
 	<script type="text/javascript">
 		angular.module("shop",[]).controller("shopcar",["$scope",function($scope){
 				$scope.title='点击展开';
-				$scope.text='这里是内容的内部。'
+				$scope.text='这里是内容的内部。';
+				$scope.text2='按钮';
+				$scope.text3='按钮2'
 		}]).directive('button',function(){
 			return {
 				restrict:'E',
+				scope:{
+					text2:'=heheData'	
+				},
+				template:'<span>{{text2}}</span>',
 				compile:function(element,attributes){
 					element.addClass('btn');
 					if(attributes.type=='submit'){
 						element.addClass('btn-primary')
+					}else if(attributes.type=='success'){
+						element.addClass('btn-success')
 					}
 					if(attributes.size){
 						element.addClass('btn-'+attributes.size)
