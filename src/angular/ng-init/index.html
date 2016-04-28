@@ -27,14 +27,14 @@
 
 			$scope.random=function(){
 				console.log(222)
-				return 11//Math.random();
+				return Math.random();
 			}
 
 			
 
-			// $scope.$watch($scope.random,function(){
-			// 	console.log(111)
-			// })
+			$scope.$watch($scope.random,function(){
+				console.log(111)
+			})
 		}])
 		
 	</script>
