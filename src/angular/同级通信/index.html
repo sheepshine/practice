@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="shopcar">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body>
+	<div>
+		<div  ng-controller="shopcarCtr1" ng-click="add()">
+			{{num}}
+		</div>
+		<div  ng-controller="shopcarCtr2">
+			{{num}}
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var shopcar=angular.module('shopcar',[])
+		shopcar.controller('shopcarCtr1',function($scope,$rootScope,heheda){
+			$scope.num=heheda.test
+			$scope.add=function(){
+				heheda.test++;
+				this.num=heheda.test
+				console.log(heheda.test);
+				$rootScope.$emit('HAHA');
+			}
+
+			$scope.$watch('num', function(newVal, oldVal,scope) {
+			    console.log(newVal, oldVal);
+			    $scope.num=newVal;
+			    console.log($scope.num,111)
+			});
+		})
+		shopcar.controller('shopcarCtr2',function($scope,$rootScope,heheda){
+			$scope.num=heheda.test
+			$rootScope.$on('HAHA',function(){
+				$scope.num=heheda.test
+			})
+			
+		})
+
+		shopcar.factory('heheda', function(){
+			return {
+				test:1
+				
+			};
+		})
+	</script>
+</body>
+</html>

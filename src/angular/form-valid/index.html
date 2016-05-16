@@ -22,6 +22,44 @@
 		<input type="password" name="password" required ng-minlength='6' ng-model="password" ng-keyup="chageFn(myForm.password.$error,formDataPass)" />
 		<span>{{formDataPass.nameval}}</span>
 	</form>
+
+	<form class="s-home-modal-box s-boos-add-box ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-model="booksAddData">
+        <h1 class="s-home-modal-title">新增预订</h1>
+        <div class="s-books-add-input-group">
+           <input placeholder="输入姓名" required="required" ng-model="booksAddData.custName" class="ng-pristine ng-invalid ng-invalid-required ng-touched" style="">
+           <input placeholder="输入电话" type="number" ng-model="booksAddData.custPhone" class="ng-pristine ng-untouched ng-valid">
+           <select class="s-books-add-date-picker ng-pristine ng-untouched ng-valid" ng-model="booksAddData.reservDateTime" placeholder="选择时间段" ng-change="$emit('BOOKS_CHANGE_DATA',booksAddData.reservDateTime)"><option value="? undefined:undefined ?"></option>
+
+                <!-- ngRepeat: reservDay in reservDayList --><option ng-repeat="reservDay in reservDayList" value="2016-5-5" class="ng-binding">2016-5-5</option><!-- end ngRepeat: reservDay in reservDayList --><option ng-repeat="reservDay in reservDayList" value="2016-5-6" class="ng-binding">2016-5-6</option><!-- end ngRepeat: reservDay in reservDayList --><option ng-repeat="reservDay in reservDayList" value="2016-5-7" class="ng-binding">2016-5-7</option><!-- end ngRepeat: reservDay in reservDayList --><option ng-repeat="reservDay in reservDayList" value="2016-5-8" class="ng-binding">2016-5-8</option><!-- end ngRepeat: reservDay in reservDayList -->
+           </select>
+           <select class="s-books-add-date-picker ng-pristine ng-untouched ng-valid ng-hide" ng-model="booksAddData.reservDate" placeholder="选择时间段" ng-show="booksAddData.reservDateTime" ng-change="changeTimeList(booksAddData.reservDate)"><option value="? undefined:undefined ?"></option>
+
+                <!-- ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;中午13:00:00&quot;,&quot;timePoint&quot;:&quot;13:00:00&quot;,&quot;sectionName&quot;:&quot;午餐&quot;,&quot;timeId&quot;:1,&quot;sectionId&quot;:1,&quot;indexnum&quot;:1}" class="ng-binding">中午13:00:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;午餐 14:30:00&quot;,&quot;timePoint&quot;:&quot;14:30:00&quot;,&quot;sectionName&quot;:&quot;午餐&quot;,&quot;timeId&quot;:22,&quot;sectionId&quot;:1,&quot;indexnum&quot;:1}" class="ng-binding">午餐 14:30:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚上17:30:00&quot;,&quot;timePoint&quot;:&quot;17:30:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:2,&quot;sectionId&quot;:2,&quot;indexnum&quot;:2}" class="ng-binding">晚上17:30:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚上18:00:00&quot;,&quot;timePoint&quot;:&quot;18:00:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:3,&quot;sectionId&quot;:2,&quot;indexnum&quot;:2}" class="ng-binding">晚上18:00:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚餐23:12:00&quot;,&quot;timePoint&quot;:&quot;23:12:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:13,&quot;sectionId&quot;:8,&quot;indexnum&quot;:3}" class="ng-binding">晚餐23:12:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚餐 23:12:00&quot;,&quot;timePoint&quot;:&quot;23:12:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:17,&quot;sectionId&quot;:8,&quot;indexnum&quot;:3}" class="ng-binding">晚餐 23:12:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚餐 14:20:00&quot;,&quot;timePoint&quot;:&quot;14:20:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:19,&quot;sectionId&quot;:8,&quot;indexnum&quot;:3}" class="ng-binding">晚餐 14:20:00</option><!-- end ngRepeat: timeList in timeSelectList --><option ng-repeat="timeList in timeSelectList" value="{&quot;timeName&quot;:&quot;晚餐 13:21:00&quot;,&quot;timePoint&quot;:&quot;13:21:00&quot;,&quot;sectionName&quot;:&quot;晚餐&quot;,&quot;timeId&quot;:21,&quot;sectionId&quot;:8,&quot;indexnum&quot;:3}" class="ng-binding">晚餐 13:21:00</option><!-- end ngRepeat: timeList in timeSelectList -->
+           </select>
+           <input placeholder="输入人数" type="number" ng-model="booksAddData.mealsNum" class="ng-pristine ng-untouched ng-valid">
+        </div>
+        <div class="s-books-add-max-warning ng-binding"></div>
+        <ion-content class="s-books-add-table-warp scroll-content ionic-scroll"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+            <ul class="s-books-add-table-select-list">
+                <!-- ngRepeat: tableitem in tablelist -->
+                <!-- <li>
+                    <span class="s-books-add-table-select-type">8人位</span>
+                    <table-add-num-select max-num="8"></table-add-num-select>
+                    <span class="s-books-add-table-select-tip">本台时段还有5台</span>
+                </li>
+                <li>
+                    <span class="s-books-add-table-select-type">10人位</span>
+                    <table-add-num-select max-num="10"></table-add-num-select>
+                    <span class="s-books-add-table-select-tip">本台时段还有5台</span>
+                </li> -->
+            </ul>
+        </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content>
+        <input class="s-books-add-table-remark ng-pristine ng-untouched ng-valid" placeholder="输入备注" ng-model="booksAddData.remark">
+        <div class="s-books-add-table-btn-group">
+            <button class="btn-default" ng-click="$emit('BOOKS_ADD_CLOSE')">取消</button>
+            <button class="btn-primary" type="submit" ng-click="$emit('SUBMIT_BOOKS_ADD',booksAddData)">确定</button>
+        </div>
+    </form>
 	<script>
 		var myApp=angular.module('myApp',[]);
 		myApp.controller('haha', ['$scope', function($scope){
