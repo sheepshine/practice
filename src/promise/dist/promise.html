@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.min.js"></script>
+</head>
+<body>
+loading……
+<div class="val1"></div>
+<div class="val2"></div>
+<script type="text/javascript">
+	//嵌套回调
+	function A(callback){
+		setTimeout(function(){
+			callback(1)
+		},500)
+	}
+
+	function B(callback,value){
+		setTimeout(function(){
+			callback(value+2)
+		},1000)
+	}
+
+	A(function(data1){
+		B(function(data2){
+			$('.val1').html(data2)
+		},data1)
+	})
+
+	// $.Deferred
+	function C(){
+		var dtd=$.Deferred();
+		setTimeout(function(){
+			dtd.resolve(3);
+			console.log(3);
+		},500)
+		return dtd;
+	}
+
+	function D(value){
+		var dtd=$.Deferred();
+		setTimeout(function(){
+			dtd.resolve(value+4);
+			console.log(value+4);
+		},500)
+		return dtd;
+	}
+
+	function E(value){
+		var dtd=$.Deferred();
+		setTimeout(function(){
+			dtd.resolve(value+5)
+			console.log(value+5);
+		},1000)
+		return dtd;
+	}
+
+	C().then(function(data){
+		return D(data)
+	}).then(function(data){
+		return E(data)
+	}).then(function(data){
+		$('.val2').html(data)
+	})
+</script>
+</body>
+</html>
