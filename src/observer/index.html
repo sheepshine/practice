@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var Oberver=(function(){
+			function bind(){
+				return 'bind'
+			}
+
+			function unbind(){
+				return 'unbind'
+			}
+
+			return function(){
+				this.on=this.subscribe=bind;
+				this.off=this.unsubscribe=unbind;
+				return this;
+			}
+		})()
+
+		var foo= new Oberver();
+		console.log(foo);
+		console.log(foo.subscribe());
+	</script>
+</body>
+</html>
