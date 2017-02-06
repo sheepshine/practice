@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+   
+  <view class="usermotto" hover="true" hover-class="other-button-hover" hover-stay-time="2000">
+    <!--引入模板-->
+    <import src="../template/test.wxml" />
+    <!--调用模板-->
+    <block wx:for="{{[0,1,2]}}" wx:for-item="test">
+      <template is="testItem" data="{{...item[test]}}" />
+    </block>
+  </view>
+
+  <scroll-view scroll-y="true" wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:for-item="i">
+      <view wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:for-item="j">
+        {{i}}*{{j}}={{i*j}}
+      </view>
+   </scroll-view>
+   <!--公用模板-->
+   <include src="../template/right.wxml" />
+</view>

@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1= title
+  p 注册注册 #{title}
+  form.form-horizontal(
+    method='post'
+  )
+    fieldset
+        legend 用户注册
+           .control-group
+              label.control-label(
+                 for='username'
+              )
+              .controls
+                input(
+                    type='text'
+                    class='input-xlarge'
+                    id='username'
+                    name='"username'
+                )
+                p.help-block 你的账户名称，用于登录和显示。
+        .control-group
+            label(
+                class='control-label'
+                for='password'
+            ) 口令
+           .controls
+                input(
+                   type='password'
+                   class='input-xlarge'
+                   id='password'
+                   name='password'
+                )
+        .control-group
+            label(
+                class='control-label'
+                for='password-repeat'
+            ) 重复输入口令
+            .controls
+                input(
+                   type='password'
+                   class='input-xlarge'
+                   id='password-repeat'
+                   name='password-repeat'
+                )
+        .form-actions
+            button(
+                type='submit"'
+                class='btn btn-primary'
+            ) 注册
+

@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto" hover="true" hover-class="other-button-hover" hover-stay-time="2000">
+    <text class="user-motto">{{motto}}</text>
+    <navigator url="../test/index?title=papapa">测试</navigator>
+    <block wx:for="{{array}}" wx:key="id">
+      {{index}}:{{item.message}}
+    </block>
+  </view>
+</view>
