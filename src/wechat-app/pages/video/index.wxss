@@ -1,0 +1,16 @@
+/* pages/video/index.wxss */
+.item{
+    margin: 6px 10px;
+    border-bottom: 1px solid #ccc;
+}
+.title{
+    margin: 10px 0;
+}
+.info{
+    margin: 2px 0;
+    font-size: 14px;
+    color: #333;
+}
+.who{
+    margin-right: 10px;
+}

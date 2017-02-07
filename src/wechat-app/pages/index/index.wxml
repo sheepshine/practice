@@ -7,6 +7,7 @@
   <view class="usermotto" hover="true" hover-class="other-button-hover" hover-stay-time="2000">
     <text class="user-motto">{{motto}}</text>
     <navigator url="../test/index?title=papapa">测试</navigator>
+    <navigator url="../components/index?title=papapa">组件</navigator>
     <block wx:for="{{array}}" wx:key="id">
       {{index}}:{{item.message}}
     </block>

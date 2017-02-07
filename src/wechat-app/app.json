@@ -1,13 +1,43 @@
 {
   "pages":[
+    "pages/video/index",
+    "pages/fe/index",
+    "pages/beauty/index",
+    "pages/detail/index",
+    "pages/media/index",
+    "pages/form/index",
+    "pages/components/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/test/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "app测试",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#f66",
+    "navigationBarTitleText": "小黄书",
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color":"#ccc",
+    "selectedColor":"#333",
+    "list": [
+      {
+        "pagePath": "pages/fe/index",
+        "text": "前端"
+      },
+      {
+        "pagePath": "pages/video/index",
+        "text": "视频"
+      },
+      {
+        "pagePath": "pages/beauty/index",
+        "text": "美女"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "个人中心"
+      }
+    ]
   }
 }

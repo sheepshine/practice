@@ -1,0 +1,15 @@
+<!--pages/video/index.wxml-->
+<view>
+    <view class="item" wx:for="{{imgData}}" wx:key="_id">
+        <view class="title">
+            <text>{{item.desc}}</text>
+        </view>
+        <view class="info">
+            <text class="who">{{item.who}}</text>
+            <text>{{item.publishedAt}}</text>
+        </view>
+        
+        <!--<image src="{{item.url}}" data-info="{{item}}"  style="width:50%" bindtap="getInfo" ></image>-->
+    </view>
+</view>
+

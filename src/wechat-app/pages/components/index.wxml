@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view style="width:100%">
+    <swiper indicator-dots circular bindchange="testchange">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image class="img" src="{{item}}" width="100%" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <icon type="success" size="32" />
+    <text>呵呵哒</text>
+    <progress percent="{{process}}" show-info />
+    <button type="primary" loading="{{loadingCtr}}" bindtap="loading">测试</button>
+  </view>
+   
+  
+   <!--公用模板-->
+   <include src="../template/right.wxml" />
+</view>

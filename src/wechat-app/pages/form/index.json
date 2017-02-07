@@ -1,0 +1,8 @@
+{
+    "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ccc",
+    "navigationBarTitleText": "表单测试",
+    "navigationBarTextStyle":"black"
+  }
+}

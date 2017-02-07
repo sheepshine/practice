@@ -1,0 +1,6 @@
+<!--pages/beauty/index.wxml-->
+<view>
+    <block wx:for="{{imgData}}" wx:key="_id">
+        <image src="{{item.url}}" data-info="{{item}}"  style="width:50%" bindtap="getInfo" ></image>
+    </block>
+</view>

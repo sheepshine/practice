@@ -1,0 +1,13 @@
+<!--pages/detail/index.wxml-->
+<view>
+    <image src="{{info.url}}" mode="aspectFit" style="width:100%;height:500px"></image>
+    <view class="item">
+        <text>姓  名：{{info.who}}</text>
+    </view>
+    <view class="item">
+        <text>日  期：{{info.publishedAt}}</text>
+    </view>
+    <view class="item">
+        <text>来  源: {{info.source}}</text>
+    </view>
+</view>
