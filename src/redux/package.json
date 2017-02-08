@@ -1,21 +1,17 @@
 {
-  "name": "practise",
+  "name": "redux",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sheepshine/practice.git"
-  },
-  "devDependencies": {
-    "gulp-connect": "^2.3.1"
-  },
   "author": "sheepshine",
   "license": "ISC",
   "dependencies": {
-    "redux": "^3.6.0"
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
   }
 }
